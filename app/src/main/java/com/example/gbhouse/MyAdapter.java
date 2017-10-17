@@ -69,8 +69,8 @@ class MyItem {
     String nFoodprice;
 
     MyItem(int aImage, String aFoodname, String aFoodprice) {
-        mImage = aImage;
-        nFoodname = aFoodname;
-        nFoodprice = aFoodprice;
+      mImage = aImage;
+      nFoodname = aFoodname;
+      nFoodprice = aFoodprice;
     }
 }
