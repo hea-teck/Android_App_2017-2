@@ -23,7 +23,7 @@
         </activity>
 
         <activity android:name=".MenuDetailActivity"
-
+            android:parentActivityName=".MenuDetailActivity"
             />
 
     </application>
