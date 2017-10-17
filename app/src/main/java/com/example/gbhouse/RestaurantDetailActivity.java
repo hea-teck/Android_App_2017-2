@@ -31,7 +31,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         final ArrayList<MyItem> data = new ArrayList<MyItem>();
         data.add(new MyItem(R.drawable.picture3, "햄치즈휠렛빅버거", "3,900"));
         data.add(new MyItem(R.drawable.picture4, "핫스파이스빅버거", "3,500"));
-        data.add(new MyItem(R.drawable.picture5, "양념치킨", "15,900"));
+        data.add(new MyItem(R.drawable.picture5, "크리스피 치킨", "13,900"));
         data.add(new MyItem(R.drawable.picture6, "데리야끼 치킨","15,900"));
 
         adapter = new MyAdapter(this, R.layout.item, data);

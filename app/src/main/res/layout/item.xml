@@ -41,8 +41,8 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
             android:text="Food Price"
             android:textSize="18sp"
             android:textStyle="bold" />
