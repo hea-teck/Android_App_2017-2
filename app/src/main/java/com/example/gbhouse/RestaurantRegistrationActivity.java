@@ -56,8 +56,9 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RestaurantDetailActivity.class);
+                startActivity(intent);//버튼 클릭시 다음 엑티비티로 넘어가면서 DB에서 자료 읽어와야됨
                 insertRecord(); //DB에 자료 저장완료
-                //버튼 클릭시 다음 엑티비티로 넘어가면서 DB에서 자료 읽어와야됨
             }
         });
 
