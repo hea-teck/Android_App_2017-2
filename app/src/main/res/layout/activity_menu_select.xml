@@ -27,7 +27,7 @@
                 android:weightSum="1">
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/imageButton4"
                     android:layout_width="166dp"
                     android:layout_height="146dp"
                     android:layout_gravity="center"
@@ -77,19 +77,19 @@
                 android:weightSum="1">
 
                 <EditText
-                    android:id="@+id/edit_name"
+                    android:id="@+id/edit_menu_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.63" />
 
                 <EditText
-                    android:id="@+id/edit_address"
+                    android:id="@+id/edit_menu_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.32" />
 
                 <EditText
-                    android:id="@+id/edit_phone"
+                    android:id="@+id/edit_menu_explanation"
                     android:layout_width="match_parent"
                     android:layout_height="54dp" />
 
@@ -104,7 +104,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/veiwall"
+                android:id="@+id/veiwall_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="메뉴 등록" />
