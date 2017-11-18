@@ -18,28 +18,28 @@ public class MenuDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_detail);
 
 
-        int Img;
-        Intent intentimage = getIntent();
-        Img = intentimage.getIntExtra ("img",0);
-        ImageView image = (ImageView)findViewById(R.id.imageView);
-        image.setImageResource(Img);
-
-        String x1,x2,x3;
-
-        Intent intentname = getIntent();
-        x1 = intentname.getStringExtra("name");
-        TextView t1 = (TextView)findViewById(R.id.textView1);
-        t1.setText(x1);
-
-        Intent intentcost = getIntent();
-        x2 = intentcost.getStringExtra("cost");
-        TextView t2 = (TextView)findViewById(R.id.textView2);
-        t2.setText(x2);
-
-        Intent intentgrade = getIntent();
-        x3 = intentgrade.getStringExtra("grade");
-        TextView t3 = (TextView)findViewById(R.id.textView3);
-        t3.setText(x3);
+//        int Img;
+//        Intent intentimage = getIntent();
+//        Img = intentimage.getIntExtra ("img",0);
+//        ImageView image = (ImageView)findViewById(R.id.imageView);
+//        image.setImageResource(Img);
+//
+//        String x1,x2,x3;
+//
+//        Intent intentname = getIntent();
+//        x1 = intentname.getStringExtra("name");
+//        TextView t1 = (TextView)findViewById(R.id.textView1);
+//        t1.setText(x1);
+//
+//        Intent intentcost = getIntent();
+//        x2 = intentcost.getStringExtra("cost");
+//        TextView t2 = (TextView)findViewById(R.id.textView2);
+//        t2.setText(x2);
+//
+//        Intent intentgrade = getIntent();
+//        x3 = intentgrade.getStringExtra("grade");
+//        TextView t3 = (TextView)findViewById(R.id.textView3);
+//        t3.setText(x3);
 
     }
 }
