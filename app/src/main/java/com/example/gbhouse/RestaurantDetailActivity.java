@@ -1,26 +1,46 @@
 package com.example.gbhouse;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class RestaurantDetailActivity extends AppCompatActivity {
-//    final static String TAG="SQLITEDBTEST";
+    final static String TAG="SQLITEDBTEST";
 
-//    EditText mName;
-//    EditText mAddress;
-//    EditText mPhone;
-//
-//    private DBHelper mDbHelper;
+    private DBHelper mDbHelper;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_detail);
+
+        mDbHelper = new DBHelper(this);
+        viewAllToTextView();
+    }
+
+    private void viewAllToTextView() {
+        TextView result1 = (TextView)findViewById(R.id.textView1);
+        TextView result2 = (TextView)findViewById(R.id.textView3);
+        TextView result3 = (TextView)findViewById(R.id.textView4);
+
+        Cursor cursor = mDbHelper.getAllUsersBySQL();
+
+        while (cursor.moveToNext()) {
+            result1.setText(cursor.getString(1));
+            result2.setText(cursor.getString(2));
+            result3.setText(cursor.getString(3));
+
+        }
     }
 
 
@@ -123,7 +143,6 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     }
 
 }
-
 
 
 

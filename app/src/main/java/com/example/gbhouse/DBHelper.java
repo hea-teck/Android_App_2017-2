@@ -42,10 +42,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.insert(UserContract.Users.TABLE_NAME,null,values);
     }
 
-//    public Cursor getAllUsersBySQL() {
-//        String sql = "Select * FROM " + UserContract.Users.TABLE_NAME;
-//        return getReadableDatabase().rawQuery(sql,null);
-//    }
+    public Cursor getAllUsersBySQL() {
+        String sql = "Select * FROM " + UserContract.Users.TABLE_NAME;
+        return getReadableDatabase().rawQuery(sql,null);
+    }
 //
 //    public long deleteUserByMethod(String _id) {
 //        SQLiteDatabase db = getWritableDatabase();

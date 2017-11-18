@@ -2,6 +2,8 @@ package com.example.gbhouse;
 
 import android.provider.BaseColumns;
 
+import static android.webkit.WebView.HitTestResult.IMAGE_TYPE;
+
 /**
  * Created by 김희택 on 2017-11-17.
  */
@@ -26,11 +28,10 @@ public class UserContract {
         public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
 
                 " (" +
-                _ID + " INTEGER PRIMARY KEY" + COMMA_SEP +    //ID가 굳이 필요할까??
                 KEY_NAME + TEXT_TYPE + COMMA_SEP +
                 KEY_ADDRESS + TEXT_TYPE + COMMA_SEP +
                 KEY_PHONE + TEXT_TYPE + COMMA_SEP +
-                KEY_PICTURE + TEXT_TYPE +
+                KEY_PICTURE + IMAGE_TYPE +
                 " )";
 
         public static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
