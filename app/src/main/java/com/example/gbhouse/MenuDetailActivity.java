@@ -12,7 +12,7 @@ import android.widget.TextView;
  */
 public class MenuDetailActivity extends AppCompatActivity {
 
-   @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_detail);
