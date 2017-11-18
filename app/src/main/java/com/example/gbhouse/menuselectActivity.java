@@ -57,18 +57,17 @@ public class menuselectActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RestaurantDetailActivity.class);
                 startActivity(intent);
-                insertRecord();
+                insertRecord1();
             }
         });
     }
 
-    private void insertRecord() {
+    private void insertRecord1() {
         EditText menu_name = (EditText) findViewById(R.id.edit_menu_name);
         EditText menu_price = (EditText) findViewById(R.id.edit_menu_price);
         EditText menu_explanation = (EditText) findViewById(R.id.edit_menu_explanation);
-        ImageButton  menu_Picture = (ImageButton) findViewById(R.id.imageButton4);
 
-        long nOfRows = mDbHelper.insertUserByMethod(menu_name.getText().toString(), menu_price.getText().toString(), menu_explanation.getText().toString(), menu_Picture .getImageMatrix().toString());
+        long nOfRows = mDbHelper.insertUserByMethod2(menu_name.getText().toString(), menu_price.getText().toString(), menu_explanation.getText().toString());
         if (nOfRows > 0)
             Toast.makeText(this, "메뉴가 등록되었습니다.", Toast.LENGTH_SHORT).show();
         else
