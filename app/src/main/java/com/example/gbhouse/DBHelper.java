@@ -19,32 +19,51 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG,getClass().getName()+".onCreate()");
-        db.execSQL(UserContract.Users.CREATE_TABLE);
+        db.execSQL(UserContract.Users.CREATE_TABLE1);
+        db.execSQL(UserContract.Users.CREATE_TABLE2);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         Log.i(TAG,getClass().getName() +".onUpgrade()");
-        db.execSQL(UserContract.Users.DELETE_TABLE);
+        db.execSQL(UserContract.Users.DELETE_TABLE1);
+        db.execSQL(UserContract.Users.DELETE_TABLE2);
         onCreate(db);
     }
 
 
 
-    public long insertUserByMethod(String name, String address, String phone, String picture) {     //picture 스트링 말고
+
+    public long insertUserByMethod1(String name, String address, String phone) {     //picture 스트링 말고
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(UserContract.Users.KEY_NAME, name);
         values.put(UserContract.Users.KEY_ADDRESS, address);
         values.put(UserContract.Users.KEY_PHONE, phone);
-        values.put(UserContract.Users.KEY_PICTURE, picture);
 
-        return db.insert(UserContract.Users.TABLE_NAME,null,values);
+
+        return db.insert(UserContract.Users.TABLE_NAME1,null,values);
+    }
+
+    public long insertUserByMethod2(String menu_name, String menu_price, String menu_explanation) {     //picture 스트링 말고
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(UserContract.Users.KEY_MENU_NAME, menu_name);
+        values.put(UserContract.Users.KEY_MENU_PRICE, menu_price);
+        values.put(UserContract.Users.KEY_MENU_EXPLANATION, menu_explanation);
+
+        return db.insert(UserContract.Users.TABLE_NAME2,null,values);
     }
 
     public Cursor getAllUsersBySQL() {
-        String sql = "Select * FROM " + UserContract.Users.TABLE_NAME;
+        String sql = "Select * FROM " + UserContract.Users.TABLE_NAME1;
         return getReadableDatabase().rawQuery(sql,null);
+    }
+
+    public Cursor getAllUsersByMethod() {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.query(UserContract.Users.TABLE_NAME2,null,null,null,null,null,null);
     }
 //
 //    public long deleteUserByMethod(String _id) {
