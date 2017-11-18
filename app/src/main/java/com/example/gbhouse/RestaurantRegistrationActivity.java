@@ -43,7 +43,6 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
 
         mDbHelper = new DBHelper(this);
 
-
         ImageButton btn = (ImageButton) findViewById(R.id.imageButton3);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +60,6 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
                 insertRecord(); //DB에 자료 저장완료
             }
         });
-
     }
 
     private void insertRecord() {                          //레코드 추가 삽입 가능
@@ -118,6 +116,5 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         String  currentTimeStamp = dateFormat.format(new Date());
         return currentTimeStamp;
     }
-
 }
 

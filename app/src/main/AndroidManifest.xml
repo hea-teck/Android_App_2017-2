@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RestaurantRegistrationActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,16 +19,15 @@
                 <action android:name="android.intent.action.DIAL" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:scheme="tel" />
-
             </intent-filter>
+
         </activity>
 
         <activity android:name=".RestaurantDetailActivity"
-            android:label="Second Activity"/>
+            android:label="GB HOUSE"/>
 
-        <activity android:name=".MenuDetailActivity"
-            android:parentActivityName=".MenuDetailActivity"
-            />
+        <activity android:name=".menuselectActivity"
+            android:label="GB HOUSE"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

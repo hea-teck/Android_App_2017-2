@@ -1,6 +1,7 @@
 package com.example.gbhouse;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -11,7 +12,7 @@ import android.widget.TextView;
  */
 public class MenuDetailActivity extends AppCompatActivity {
 
-    @Override
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_detail);
@@ -39,5 +40,6 @@ public class MenuDetailActivity extends AppCompatActivity {
         x3 = intentgrade.getStringExtra("grade");
         TextView t3 = (TextView)findViewById(R.id.textView3);
         t3.setText(x3);
+
     }
 }

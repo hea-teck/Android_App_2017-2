@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by 김희택 on 2017-11-17.
- */
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -32,6 +29,8 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
+
     public long insertUserByMethod(String name, String address, String phone, String picture) {     //picture 스트링 말고
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -42,10 +41,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return db.insert(UserContract.Users.TABLE_NAME,null,values);
     }
-//
-//    public Cursor getAllUsersByMethod() {
-//        SQLiteDatabase db = getReadableDatabase();
-//        return db.query(UserContract.Users.TABLE_NAME,null,null,null,null,null,null);
+
+//    public Cursor getAllUsersBySQL() {
+//        String sql = "Select * FROM " + UserContract.Users.TABLE_NAME;
+//        return getReadableDatabase().rawQuery(sql,null);
 //    }
 //
 //    public long deleteUserByMethod(String _id) {
