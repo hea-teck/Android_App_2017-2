@@ -8,15 +8,24 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class RestaurantDetailActivity extends AppCompatActivity {
+
     final static String TAG="SQLITEDBTEST";
 
-    private DBHelper mDbHelper;
+    EditText m_menu_name;
+    EditText m_menu_price;
+    EditText m_menu_explanation;
 
+    private DBHelper mDbHelper;
 
 
     @Override
@@ -24,9 +33,15 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_detail);
 
+        m_menu_name = (EditText) findViewById(R.id.edit_menu_name);
+        m_menu_price = (EditText) findViewById(R.id.edit_menu_price);
+        m_menu_explanation = (EditText) findViewById(R.id.edit_menu_explanation);
+
         mDbHelper = new DBHelper(this);
+
         viewAllToTextView();
     }
+
 
     private void viewAllToTextView() {
         TextView result1 = (TextView)findViewById(R.id.textView1);
@@ -41,7 +56,36 @@ public class RestaurantDetailActivity extends AppCompatActivity {
             result3.setText(cursor.getString(3));
 
         }
+
+//        Cursor cursor1 = mDbHelper.getAllUsersByMethod();
+//
+//        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getApplicationContext(),
+//                R.layout.item, cursor1, new String[]{
+//                UserContract.Users.KEY_MENU_NAME,
+//                UserContract.Users.KEY_MENU_PRICE,
+//                UserContract.Users.KEY_MENU_EXPLANATION},
+//                new int[]{R.id.edit_menu_name, R.id.edit_menu_price, R.id.edit_menu_explanation}, 0);
+//
+//        ListView lv = (ListView)findViewById(R.id.listView);
+//        lv.setAdapter(adapter);
+//
+//        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Adapter adapter = adapterView.getAdapter();
+//
+//                m_menu_name .setText(((Cursor)adapter.getItem(i)).getString(0));
+//                m_menu_price.setText(((Cursor)adapter.getItem(i)).getString(1));
+//                m_menu_explanation.setText(((Cursor)adapter.getItem(i)).getString(2));
+//            }
+//        });
+//        lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+
+
     }
+
+
 
 
 //

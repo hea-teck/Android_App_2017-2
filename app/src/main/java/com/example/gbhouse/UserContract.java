@@ -19,22 +19,43 @@ public class UserContract {
 
     /* Inner class that defines the table contents */
     public static class Users implements BaseColumns {
-        public static final String TABLE_NAME="Restaurant";
+
+        public static final String TABLE_NAME1="Restaurant";
         public static final String KEY_NAME = "Name";
         public static final String KEY_ADDRESS = "ADDRESS";
         public static final String KEY_PHONE = "PHONE";
-        public static final String KEY_PICTURE = "PICTURE"; //사진 스트링 말고...
+        public static final String KEY_PICTURE = "PICTURE";//사진 스트링 말고...
 
-        public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
+        public static final String TABLE_NAME2="Restaurant";
+        public static final String KEY_MENU_NAME = "MENU_NAME";
+        public static final String KEY_MENU_PRICE = "MENU_PRICE";
+        public static final String KEY_MENU_EXPLANATION = "MENU_EXPLANATION";
+
+
+        public static final String CREATE_TABLE1 = "CREATE TABLE " + TABLE_NAME1 +
 
                 " (" +
                 KEY_NAME + TEXT_TYPE + COMMA_SEP +
                 KEY_ADDRESS + TEXT_TYPE + COMMA_SEP +
                 KEY_PHONE + TEXT_TYPE + COMMA_SEP +
                 KEY_PICTURE + IMAGE_TYPE +
+
                 " )";
 
-        public static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+        public static final String DELETE_TABLE1 = "DROP TABLE IF EXISTS " + TABLE_NAME1;
+
+
+
+
+        public static final String CREATE_TABLE2 = "CREATE TABLE " + TABLE_NAME2 +
+
+                " (" +
+                KEY_MENU_NAME + TEXT_TYPE + COMMA_SEP +
+                KEY_MENU_PRICE + TEXT_TYPE + COMMA_SEP +
+                KEY_MENU_EXPLANATION + TEXT_TYPE +
+                " )";
+
+        public static final String DELETE_TABLE2 = "DROP TABLE IF EXISTS " + TABLE_NAME2;
     }
 
 }

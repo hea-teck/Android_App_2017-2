@@ -57,22 +57,21 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RestaurantDetailActivity.class);
                 startActivity(intent);//버튼 클릭시 다음 엑티비티로 넘어가면서 DB에서 자료 읽어와야됨
-                insertRecord(); //DB에 자료 저장완료
+                insertRecord2(); //DB에 자료 저장완료
             }
         });
     }
 
-    private void insertRecord() {                          //레코드 추가 삽입 가능
+    private void insertRecord2() {                          //레코드 추가 삽입 가능
         EditText name = (EditText) findViewById(R.id.edit_name);
         EditText address = (EditText) findViewById(R.id.edit_address);
         EditText phone = (EditText) findViewById(R.id.edit_phone);
-        ImageButton picture = (ImageButton) findViewById(R.id.imageButton3);
 
-        long nOfRows = mDbHelper.insertUserByMethod(name.getText().toString(), address.getText().toString(), phone.getText().toString(), picture.getImageMatrix().toString());   //이미지 받아오는것 확인 / 수정!!!
+        long nOfRows = mDbHelper.insertUserByMethod1(name.getText().toString(), address.getText().toString(), phone.getText().toString());   //이미지 받아오는것 확인 / 수정!!!
         if (nOfRows > 0)
             Toast.makeText(this, "맛집이 등록되었습니다.", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(this, "다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "다시삽입해주세요.", Toast.LENGTH_SHORT).show();
     }
 
 
