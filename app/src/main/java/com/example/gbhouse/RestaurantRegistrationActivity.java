@@ -117,4 +117,3 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         return currentTimeStamp;
     }
 }
-
