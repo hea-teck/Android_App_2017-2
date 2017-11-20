@@ -30,7 +30,7 @@ public class menuselectActivity extends AppCompatActivity {
     EditText m_menu_explanation;
     ImageButton  m_menu_Picture;
 
-    private DBHelper mDbHelper;
+    private DBHelper2 mDbHelper2;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class menuselectActivity extends AppCompatActivity {
         m_menu_explanation = (EditText) findViewById(R.id.edit_menu_explanation);
         m_menu_Picture = (ImageButton) findViewById(R.id.imageButton4);
 
-        mDbHelper = new DBHelper(this);
+        mDbHelper2 = new DBHelper2(this);
 
         ImageButton btn = (ImageButton) findViewById(R.id.imageButton4);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class menuselectActivity extends AppCompatActivity {
         EditText menu_price = (EditText) findViewById(R.id.edit_menu_price);
         EditText menu_explanation = (EditText) findViewById(R.id.edit_menu_explanation);
 
-        long nOfRows = mDbHelper.insertUserByMethod2(menu_name.getText().toString(), menu_price.getText().toString(), menu_explanation.getText().toString());
+        long nOfRows = mDbHelper2.insertUserByMethod2(menu_name.getText().toString(), menu_price.getText().toString(), menu_explanation.getText().toString());
         if (nOfRows > 0)
             Toast.makeText(this, "메뉴가 등록되었습니다.", Toast.LENGTH_SHORT).show();
         else

@@ -2,7 +2,6 @@ package com.example.gbhouse;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,12 +11,15 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+
 public class RestaurantDetailActivity extends AppCompatActivity {
+    static MyAdapter adapter;
 
     final static String TAG="SQLITEDBTEST";
 
@@ -25,7 +27,8 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     EditText m_menu_price;
     EditText m_menu_explanation;
 
-    private DBHelper mDbHelper;
+    private DBHelper1 mDbHelper1;
+    private DBHelper2 mDbHelper2;
 
 
     @Override
@@ -37,38 +40,43 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         m_menu_price = (EditText) findViewById(R.id.edit_menu_price);
         m_menu_explanation = (EditText) findViewById(R.id.edit_menu_explanation);
 
-        mDbHelper = new DBHelper(this);
+        mDbHelper1 = new DBHelper1(this);
+        mDbHelper2 = new DBHelper2(this);
 
         viewAllToTextView();
+        viewAllToListView();
     }
 
 
     private void viewAllToTextView() {
-        TextView result1 = (TextView)findViewById(R.id.textView1);
-        TextView result2 = (TextView)findViewById(R.id.textView3);
-        TextView result3 = (TextView)findViewById(R.id.textView4);
+        TextView result1 = (TextView) findViewById(R.id.textView1);
+        TextView result2 = (TextView) findViewById(R.id.textView3);
+        TextView result3 = (TextView) findViewById(R.id.textView4);
 
-        Cursor cursor = mDbHelper.getAllUsersBySQL();
+        Cursor cursor1 = mDbHelper1.getAllUsersBySQL();
 
-        while (cursor.moveToNext()) {
-            result1.setText(cursor.getString(1));
-            result2.setText(cursor.getString(2));
-            result3.setText(cursor.getString(3));
-
+        while (cursor1.moveToNext()) {
+            result1.setText(cursor1.getString(0));
+            result2.setText(cursor1.getString(1));
+            result3.setText(cursor1.getString(2));
         }
+    }
 
-//        Cursor cursor1 = mDbHelper.getAllUsersByMethod();
-//
-//        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getApplicationContext(),
-//                R.layout.item, cursor1, new String[]{
-//                UserContract.Users.KEY_MENU_NAME,
-//                UserContract.Users.KEY_MENU_PRICE,
-//                UserContract.Users.KEY_MENU_EXPLANATION},
-//                new int[]{R.id.edit_menu_name, R.id.edit_menu_price, R.id.edit_menu_explanation}, 0);
-//
-//        ListView lv = (ListView)findViewById(R.id.listView);
-//        lv.setAdapter(adapter);
-//
+
+    private void viewAllToListView() {
+
+        Cursor cursor2 = mDbHelper2.getAllUsersByMethod();
+
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getApplicationContext(),
+                R.layout.item, cursor2, new String[]{
+                UserContract2.Users.KEY_MENU_EXPLANATION,
+                UserContract2.Users.KEY_MENU_NAME,
+                UserContract2.Users.KEY_MENU_PRICE},
+                new int[]{R.id.textView1, R.id.textView1, R.id.textView2}, 0);
+
+        ListView lv = (ListView)findViewById(R.id.listView);
+        lv.setAdapter(adapter);
+
 //        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -81,9 +89,9 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 //        });
 //        lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-
-
     }
+
+
 
 
 
@@ -100,15 +108,12 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 //
 //        final ArrayList<MyItem> data = new ArrayList<MyItem>();
 //        data.add(new MyItem(R.drawable.picture3, "햄치즈휠렛빅버거", "3,900"));
-//        data.add(new MyItem(R.drawable.picture4, "핫스파이스빅버거", "3,500"));
-//        data.add(new MyItem(R.drawable.picture5, "크리스피 치킨", "13,900"));
-//        data.add(new MyItem(R.drawable.picture6, "데리야끼 치킨","15,900"));
 //
 //        adapter = new MyAdapter(this, R.layout.item, data);
 //
 //        ListView listView = (ListView) findViewById(R.id.listView);
 //        listView.setAdapter(adapter);
-//
+
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            public void onItemClick(AdapterView<?> parent, View vClicked, int position, long id) {
 //

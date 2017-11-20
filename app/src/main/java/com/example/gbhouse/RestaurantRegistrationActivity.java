@@ -30,7 +30,7 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
     EditText mPhone;
     ImageButton mPicture;
 
-    private DBHelper mDbHelper;
+    private DBHelper1 mDbHelper1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         mPhone = (EditText) findViewById(R.id.edit_phone);
         mPicture = (ImageButton) findViewById(R.id.imageButton3);
 
-        mDbHelper = new DBHelper(this);
+        mDbHelper1 = new DBHelper1(this);
 
         ImageButton btn = (ImageButton) findViewById(R.id.imageButton3);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         EditText address = (EditText) findViewById(R.id.edit_address);
         EditText phone = (EditText) findViewById(R.id.edit_phone);
 
-        long nOfRows = mDbHelper.insertUserByMethod1(name.getText().toString(), address.getText().toString(), phone.getText().toString());   //이미지 받아오는것 확인 / 수정!!!
+        long nOfRows = mDbHelper1.insertUserByMethod1(name.getText().toString(), address.getText().toString(), phone.getText().toString());   //이미지 받아오는것 확인 / 수정!!!
         if (nOfRows > 0)
             Toast.makeText(this, "맛집이 등록되었습니다.", Toast.LENGTH_SHORT).show();
         else
