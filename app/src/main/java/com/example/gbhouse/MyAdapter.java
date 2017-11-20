@@ -49,28 +49,28 @@ public class MyAdapter extends BaseAdapter {
         }
 
         ImageView image = (ImageView) convertView.findViewById(R.id.imageView);
-        image.setImageResource(mItems.get(position).mImage);
+        image.setImageResource(mItems.get(position).mIcon);
 
 
         TextView foodname = (TextView) convertView.findViewById(R.id.textView1);
-        foodname .setText(mItems.get(position).nFoodname);
+        foodname .setText(mItems.get(position).nName);
 
 
         TextView foodprice = (TextView) convertView.findViewById(R.id.textView2);
-        foodprice.setText(mItems.get(position).nFoodprice);
+        foodprice.setText(mItems.get(position).nAge);
 
         return convertView;
     }
 }
 
 class MyItem {
-    int mImage;
-    String nFoodname;
-    String nFoodprice;
+    int mIcon;
+    String nName;
+    String nAge;
 
-    MyItem(int aImage, String aFoodname, String aFoodprice) {
-      mImage = aImage;
-      nFoodname = aFoodname;
-      nFoodprice = aFoodprice;
+    MyItem(int aIcon, String aName, String aAge) {
+        mIcon = aIcon;
+        nName = aName;
+        nAge = aAge;
     }
 }
