@@ -2,6 +2,7 @@ package com.example.gbhouse;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -53,12 +56,19 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         TextView result2 = (TextView) findViewById(R.id.textView3);
         TextView result3 = (TextView) findViewById(R.id.textView4);
 
+        ImageView result4 = (ImageView) findViewById(R.id.imageView1);
+
+
+
         Cursor cursor1 = mDbHelper1.getAllUsersBySQL();
 
         while (cursor1.moveToNext()) {
-            result1.setText(cursor1.getString(0));
-            result2.setText(cursor1.getString(1));
-            result3.setText(cursor1.getString(2));
+            result4.setImageURI(Uri.parse(cursor1.getString(4)));
+            result1.setText(cursor1.getString(1));
+            result2.setText(cursor1.getString(2));
+            result3.setText(cursor1.getString(3));
+
+
         }
     }
 
@@ -69,10 +79,11 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(getApplicationContext(),
                 R.layout.item, cursor2, new String[]{
-                UserContract2.Users.KEY_MENU_EXPLANATION,
+                UserContract2.Users.KEY_MENU_IMAGEURI,
                 UserContract2.Users.KEY_MENU_NAME,
-                UserContract2.Users.KEY_MENU_PRICE},
-                new int[]{R.id.textView1, R.id.textView1, R.id.textView2}, 0);
+                UserContract2.Users.KEY_MENU_PRICE,
+                },
+                new int[]{R.id.imageView, R.id.textView1, R.id.textView2}, 0);
 
         ListView lv = (ListView)findViewById(R.id.listView);
         lv.setAdapter(adapter);
@@ -192,6 +203,5 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     }
 
 }
-
 
 
