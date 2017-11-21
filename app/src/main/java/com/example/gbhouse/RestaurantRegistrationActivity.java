@@ -25,10 +25,10 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
 
     final static String TAG="GBHouse";
 
-    EditText mName;
-    EditText mAddress;
-    EditText mPhone;
-    ImageButton mPicture;
+//    EditText mName;
+//    EditText mAddress;
+//    EditText mPhone;
+//    ImageButton mPicture;
 
     private DBHelper1 mDbHelper1;
 
@@ -36,10 +36,10 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_registration);
 
-        mName = (EditText) findViewById(R.id.edit_name);
-        mAddress = (EditText) findViewById(R.id.edit_address);
-        mPhone = (EditText) findViewById(R.id.edit_phone);
-        mPicture = (ImageButton) findViewById(R.id.imageButton3);
+//        mName = (EditText) findViewById(R.id.edit_name);
+//        mAddress = (EditText) findViewById(R.id.edit_address);
+//        mPhone = (EditText) findViewById(R.id.edit_phone);
+//        mPicture = (ImageButton) findViewById(R.id.imageButton3);
 
         mDbHelper1 = new DBHelper1(this);
 

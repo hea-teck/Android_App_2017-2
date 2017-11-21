@@ -30,7 +30,8 @@ public class menuselectActivity extends AppCompatActivity {
     EditText m_menu_explanation;
     ImageButton  m_menu_Picture;
 
-    private DBHelper2 mDbHelper2;
+    public DBHelper1 mDbHelper1;
+    public DBHelper2 mDbHelper2;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class menuselectActivity extends AppCompatActivity {
         m_menu_explanation = (EditText) findViewById(R.id.edit_menu_explanation);
         m_menu_Picture = (ImageButton) findViewById(R.id.imageButton4);
 
-        mDbHelper2 = new DBHelper2(this);
+        mDbHelper1 = new DBHelper1(this);
 
         ImageButton btn = (ImageButton) findViewById(R.id.imageButton4);
         btn.setOnClickListener(new View.OnClickListener() {

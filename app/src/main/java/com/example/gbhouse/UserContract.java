@@ -22,7 +22,7 @@ public class UserContract {
         public static final String KEY_NAME = "Name";
         public static final String KEY_ADDRESS = "ADDRESS";
         public static final String KEY_PHONE = "PHONE";
-        public static final String KEY_PICTURE = "PICTURE";//사진 스트링 말고...
+        public static final String KEY_PICTURE = "PICTURE";
 
 
         public static final String CREATE_TABLE1 = "CREATE TABLE " + TABLE_NAME1 +
