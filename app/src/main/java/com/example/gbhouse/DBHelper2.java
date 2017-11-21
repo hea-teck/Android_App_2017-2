@@ -29,22 +29,18 @@ public class DBHelper2 extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertUserByMethod2(String menu_name, String menu_price, String menu_explanation) {     //picture 스트링 말고
+    public long insertUserByMethod2(String menu_name, String menu_price, String menu_explanation,String menu_imageuri) {     //picture 스트링 말고
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put(UserContract2.Users.KEY_MENU_NAME, menu_name);
         values.put(UserContract2.Users.KEY_MENU_PRICE, menu_price);
         values.put(UserContract2.Users.KEY_MENU_EXPLANATION, menu_explanation);
+        values.put(UserContract2.Users.KEY_MENU_IMAGEURI, menu_imageuri);
 
 
         return db.insert(UserContract2.Users.TABLE_NAME2, null, values);
     }
-//
-//    public Cursor getAllUsersBySQL() {
-//        String sql = "Select * FROM " + UserContract.Users.TABLE_NAME1;
-//        return getReadableDatabase().rawQuery(sql, null);
-//    }
 
     public Cursor getAllUsersByMethod() {
         SQLiteDatabase db = getReadableDatabase();

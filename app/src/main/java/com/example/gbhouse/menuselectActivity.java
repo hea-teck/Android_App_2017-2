@@ -67,7 +67,9 @@ public class menuselectActivity extends AppCompatActivity {
         EditText menu_price = (EditText) findViewById(R.id.edit_menu_price);
         EditText menu_explanation = (EditText) findViewById(R.id.edit_menu_explanation);
 
-        long nOfRows = mDbHelper2.insertUserByMethod2(menu_name.getText().toString(), menu_price.getText().toString(), menu_explanation.getText().toString());
+        String menu_imageuri = "sdcard/Android/data/com.example.gbhouse/files/Pictures/"+mPhotoFileName;
+
+        long nOfRows = mDbHelper2.insertUserByMethod2(menu_name.getText().toString(), menu_price.getText().toString(), menu_explanation.getText().toString(),menu_imageuri);
         if (nOfRows > 0)
             Toast.makeText(this, "메뉴가 등록되었습니다.", Toast.LENGTH_SHORT).show();
         else
