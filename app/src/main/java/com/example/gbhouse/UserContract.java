@@ -2,8 +2,6 @@ package com.example.gbhouse;
 
 import android.provider.BaseColumns;
 
-import static android.webkit.WebView.HitTestResult.IMAGE_TYPE;
-
 /**
  * Created by 김희택 on 2017-11-17.
  */
