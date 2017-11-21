@@ -29,12 +29,13 @@ public class DBHelper1 extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertUserByMethod1(String name, String address, String phone) {     //picture 스트링 말고
+    public long insertUserByMethod1(String name, String address, String phone, String imageuri) {     //picture 스트링 말고
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(UserContract.Users.KEY_NAME, name);
         values.put(UserContract.Users.KEY_ADDRESS, address);
         values.put(UserContract.Users.KEY_PHONE, phone);
+        values.put(UserContract.Users.KEY_PICTURE, imageuri);
 
         return db.insert(UserContract.Users.TABLE_NAME1,null,values);
     }
@@ -43,4 +44,6 @@ public class DBHelper1 extends SQLiteOpenHelper {
         String sql = "Select * FROM " + UserContract.Users.TABLE_NAME1;
         return getReadableDatabase().rawQuery(sql,null);
     }
+
+
 }

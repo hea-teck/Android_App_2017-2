@@ -10,7 +10,7 @@ import static android.webkit.WebView.HitTestResult.IMAGE_TYPE;
 
 public class UserContract {
     public static final String DB_NAME="restaurant.db";
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 40;
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     // To prevent someone from accidentally instantiating the contract class,
@@ -30,11 +30,11 @@ public class UserContract {
         public static final String CREATE_TABLE1 = "CREATE TABLE " + TABLE_NAME1 +
 
                 " (" +
+               _ID + " INTEGER PRIMARY KEY" + COMMA_SEP +
                 KEY_NAME + TEXT_TYPE + COMMA_SEP +
                 KEY_ADDRESS + TEXT_TYPE + COMMA_SEP +
                 KEY_PHONE + TEXT_TYPE + COMMA_SEP +
-                KEY_PICTURE + IMAGE_TYPE +
-
+                KEY_PICTURE + TEXT_TYPE +
                 " )";
 
         public static final String DELETE_TABLE1 = "DROP TABLE IF EXISTS " + TABLE_NAME1;

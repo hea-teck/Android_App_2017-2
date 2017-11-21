@@ -67,7 +67,10 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         EditText address = (EditText) findViewById(R.id.edit_address);
         EditText phone = (EditText) findViewById(R.id.edit_phone);
 
-        long nOfRows = mDbHelper1.insertUserByMethod1(name.getText().toString(), address.getText().toString(), phone.getText().toString());   //이미지 받아오는것 확인 / 수정!!!
+
+        String imageuri = "sdcard/Android/data/com.example.gbhouse/files/Pictures/"+mPhotoFileName;
+
+        long nOfRows = mDbHelper1.insertUserByMethod1(name.getText().toString(), address.getText().toString(), phone.getText().toString(), imageuri);   //이미지 받아오는것 확인 / 수정!!!
         if (nOfRows > 0)
             Toast.makeText(this, "맛집이 등록되었습니다.", Toast.LENGTH_SHORT).show();
         else
