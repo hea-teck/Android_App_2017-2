@@ -26,6 +26,9 @@
 
         </activity>
 
+        <activity android:name=".MenuDetailActivity"
+            android:label="GB HOUSE"/>
+
         <activity android:name=".RestaurantDetailActivity"
             android:label="GB HOUSE"/>
 

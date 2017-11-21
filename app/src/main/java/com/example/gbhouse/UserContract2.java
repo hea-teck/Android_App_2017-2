@@ -21,8 +21,9 @@ public class UserContract2 {
         public static final String TABLE_NAME2="Restaurant2";
         public static final String KEY_MENU_NAME = "MENU_NAME";
         public static final String KEY_MENU_PRICE = "MENU_PRICE";
-        public static final String KEY_MENU_EXPLANATION = "MENU_EXPLANATION";
         public static final String KEY_MENU_IMAGEURI = "MENU_IMAGEURI";
+        public static final String KEY_MENU_EXPLANATION = "MENU_EXPLANATION";
+
 
 
         public static final String CREATE_TABLE2 = "CREATE TABLE " + TABLE_NAME2 +
@@ -31,9 +32,8 @@ public class UserContract2 {
                _ID + " INTEGER PRIMARY KEY" + COMMA_SEP +
                 KEY_MENU_NAME + TEXT_TYPE + COMMA_SEP +
                 KEY_MENU_PRICE + TEXT_TYPE + COMMA_SEP +
-                KEY_MENU_EXPLANATION + TEXT_TYPE + COMMA_SEP +
                 KEY_MENU_IMAGEURI + TEXT_TYPE +
-
+                KEY_MENU_EXPLANATION + TEXT_TYPE + COMMA_SEP +
                 " )";
 
         public static final String DELETE_TABLE2 = "DROP TABLE IF EXISTS " + TABLE_NAME2;

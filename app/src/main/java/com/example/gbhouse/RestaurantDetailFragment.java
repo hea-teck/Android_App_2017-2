@@ -2,12 +2,15 @@ package com.example.gbhouse;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -70,15 +73,31 @@ public class RestaurantDetailFragment extends Fragment{
 
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(),
                 R.layout.item, cursor2, new String[]{
-                UserContract2.Users.KEY_MENU_IMAGEURI,
                 UserContract2.Users.KEY_MENU_NAME,
                 UserContract2.Users.KEY_MENU_PRICE,
-                },
-                new int[]{R.id.imageView, R.id.textView1, R.id.textView2}, 0);
+                UserContract2.Users.KEY_MENU_IMAGEURI,
+                UserContract2.Users.KEY_MENU_EXPLANATION},
+                new int[]{ R.id.textView1, R.id.textView2, R.id.imageView, R.id.textView3}, 0);
 
         ListView lv = (ListView)rootView.findViewById(R.id.listView);
         lv.setAdapter(adapter);
 
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                Adapter adapter = parent.getAdapter();
+
+                Intent intent = new Intent();
+
+                intent.putExtra("title", i);
+
+                Activity activity = getActivity();
+                ((OnTitleSelectedListener)activity).onTitleSelected(i);
+
+            }
+        });
+        lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         return rootView;
     }
 
