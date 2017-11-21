@@ -16,8 +16,6 @@ import android.widget.TextView;
 
 public class MenuDetailFragment extends android.support.v4.app.Fragment {
 
-    int[] count = new int[100];
-
     public DBHelper2 mDbHelper2;
 
     static int index = -1;
@@ -31,7 +29,7 @@ public class MenuDetailFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         //inflate layout for this fragment
-        View view = inflater.inflate(R.layout.activity_menu_detail, container, false);
+        View view = inflater.inflate(R.layout.activity_main, container, false);
 
         mDbHelper2 = new DBHelper2(getActivity());
 
@@ -44,17 +42,18 @@ public class MenuDetailFragment extends android.support.v4.app.Fragment {
         df.moveToPosition(select);
 
 
-        TextView tv1 = (TextView)view.findViewById(R.id.textView1);
-        tv1.setText(df.getString(1));
-
-        TextView tv2 = (TextView)view.findViewById(R.id.textView2);
-        tv2.setText(df.getString(2));
-
-        ImageView img = (ImageView)view.findViewById(R.id.imageView);
-        img.setImageURI(Uri.parse(df.getString(3)));
-
-        TextView tv3 = (TextView)view.findViewById(R.id.textView3);
-        tv3.setText(df.getString(4));
+//
+//        TextView tv1 = (TextView)view.findViewById(R.id.textView1);
+//        tv1.setText(df.getString(1));
+//
+//        TextView tv2 = (TextView)view.findViewById(R.id.textView2);
+//        tv2.setText(df.getString(2));
+//
+//        ImageView img = (ImageView)view.findViewById(R.id.imageView);
+//        img.setImageURI(Uri.parse(df.getString(3)));
+//
+//        TextView tv3 = (TextView)view.findViewById(R.id.textView3);
+//        tv3.setText(df.getString(4));
 
 
 

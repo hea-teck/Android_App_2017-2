@@ -25,14 +25,14 @@ import java.util.ArrayList;
 public class RestaurantDetailActivity extends AppCompatActivity implements RestaurantDetailFragment.OnTitleSelectedListener{
     static MyAdapter adapter;
 
-    final static String TAG="SQLITEDBTEST";
-
-    EditText m_menu_name;
-    EditText m_menu_price;
-    EditText m_menu_explanation;
-
-    private DBHelper1 mDbHelper1;
-    private DBHelper2 mDbHelper2;
+//    final static String TAG="SQLITEDBTEST";
+//
+//    EditText m_menu_name;
+//    EditText m_menu_price;
+//    EditText m_menu_explanation;
+//
+//    public DBHelper1 mDbHelper1;
+//    public DBHelper2 mDbHelper2;
 
 
     @Override
@@ -40,54 +40,54 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Resta
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_detail);
 
-        m_menu_name = (EditText) findViewById(R.id.edit_menu_name);
-        m_menu_price = (EditText) findViewById(R.id.edit_menu_price);
-        m_menu_explanation = (EditText) findViewById(R.id.edit_menu_explanation);
+//        m_menu_name = (EditText) findViewById(R.id.edit_menu_name);
+//        m_menu_price = (EditText) findViewById(R.id.edit_menu_price);
+//        m_menu_explanation = (EditText) findViewById(R.id.edit_menu_explanation);
+//
+//        mDbHelper1 = new DBHelper1(this);
+//        mDbHelper2 = new DBHelper2(this);
 
-        mDbHelper1 = new DBHelper1(this);
-        mDbHelper2 = new DBHelper2(this);
-
-        viewAllToTextView();
-        viewAllToListView();
+//        viewAllToTextView();
+//        viewAllToListView();
     }
 
 
-    private void viewAllToTextView() {
-        TextView result1 = (TextView) findViewById(R.id.textView1);
-        TextView result2 = (TextView) findViewById(R.id.textView3);
-        TextView result3 = (TextView) findViewById(R.id.textView4);
+//    private void viewAllToTextView() {
+//        TextView result1 = (TextView) findViewById(R.id.textView1);
+//        TextView result2 = (TextView) findViewById(R.id.textView3);
+//        TextView result3 = (TextView) findViewById(R.id.textView4);
+//
+//        ImageView result4 = (ImageView) findViewById(R.id.imageView1);
+//
+//
+//
+//        Cursor cursor1 = mDbHelper1.getAllUsersBySQL();
+//
+//        while (cursor1.moveToNext()) {
+//            result4.setImageURI(Uri.parse(cursor1.getString(4)));
+//            result1.setText(cursor1.getString(1));
+//            result2.setText(cursor1.getString(2));
+//            result3.setText(cursor1.getString(3));
+//
+//
+//        }
+//    }
 
-        ImageView result4 = (ImageView) findViewById(R.id.imageView1);
 
-
-
-        Cursor cursor1 = mDbHelper1.getAllUsersBySQL();
-
-        while (cursor1.moveToNext()) {
-            result4.setImageURI(Uri.parse(cursor1.getString(4)));
-            result1.setText(cursor1.getString(1));
-            result2.setText(cursor1.getString(2));
-            result3.setText(cursor1.getString(3));
-
-
-        }
-    }
-
-
-    private void viewAllToListView() {
-
-        Cursor cursor2 = mDbHelper2.getAllUsersByMethod();
-
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getApplicationContext(),
-                R.layout.item, cursor2, new String[]{
-                UserContract2.Users.KEY_MENU_IMAGEURI,
-                UserContract2.Users.KEY_MENU_NAME,
-                UserContract2.Users.KEY_MENU_PRICE,
-                },
-                new int[]{R.id.imageView, R.id.textView1, R.id.textView2}, 0);
-
-        ListView lv = (ListView)findViewById(R.id.listView);
-        lv.setAdapter(adapter);
+//    private void viewAllToListView() {
+//
+//        Cursor cursor2 = mDbHelper2.getAllUsersByMethod();
+//
+//        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getApplicationContext(),
+//                R.layout.item, cursor2, new String[]{
+//                UserContract2.Users.KEY_MENU_IMAGEURI,
+//                UserContract2.Users.KEY_MENU_NAME,
+//                UserContract2.Users.KEY_MENU_PRICE,
+//                },
+//                new int[]{R.id.imageView, R.id.textView1, R.id.textView2}, 0);
+//
+//        ListView lv = (ListView)findViewById(R.id.listView);
+//        lv.setAdapter(adapter);
 
 //        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -101,7 +101,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Resta
 //        });
 //        lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-    }
+//    }
 
 
 
@@ -220,5 +220,3 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Resta
     }
 
 }
-
-
