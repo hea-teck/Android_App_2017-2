@@ -1,6 +1,7 @@
 package com.example.gbhouse;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class RestaurantDetailActivity extends AppCompatActivity {
+public class RestaurantDetailActivity extends AppCompatActivity implements RestaurantDetailFragment.OnTitleSelectedListener{
     static MyAdapter adapter;
 
     final static String TAG="SQLITEDBTEST";
@@ -199,6 +200,22 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onTitleSelected(int i) {
+        if (getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE) {
+            //DetailsFragment detailsFragment = new DetailsFragment();
+            MenuDetailFragment detailfragment = new MenuDetailFragment();
+            detailfragment.setSelection(i);
+            getSupportFragmentManager().beginTransaction().replace(R.id.details, detailfragment).commit();
+        } else {
+            Intent intent = new Intent(this, MenuDetailActivity.class);
+            intent.putExtra("index", i);
+            startActivity(intent);
+
         }
     }
 
