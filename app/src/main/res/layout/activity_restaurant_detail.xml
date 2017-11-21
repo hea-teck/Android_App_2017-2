@@ -38,8 +38,8 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="207dp"
-            android:layout_height="match_parent"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
             android:src="@drawable/picture1"
             android:visibility="visible" />
 
@@ -54,7 +54,7 @@
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="51dp"
                 android:hint="주소"
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
@@ -69,8 +69,8 @@
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="134dp"
+                    android:layout_height="57dp"
                     android:layout_weight="0.17"
                     android:hint="매장 번호"
                     android:textColor="@android:color/black"
