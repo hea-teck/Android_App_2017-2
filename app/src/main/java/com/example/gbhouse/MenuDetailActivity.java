@@ -26,12 +26,8 @@ public class MenuDetailActivity extends AppCompatActivity {
 
 
         MenuDetailFragment details = new MenuDetailFragment();
-
         details.setSelection(getIntent().getIntExtra("index",-1));
-
         getSupportFragmentManager().beginTransaction().replace(R.id.details,details).commit();
-
-
 
 //        int Img;
 //        Intent intentimage = getIntent();

@@ -17,11 +17,9 @@ import android.widget.TextView;
 public class MenuDetailFragment extends android.support.v4.app.Fragment {
 
     public DBHelper2 mDbHelper2;
-
     static int index = -1;
 
     public MenuDetailFragment(){
-
     }
 
     public void setSelection(int i){index = i;}
@@ -30,16 +28,14 @@ public class MenuDetailFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         //inflate layout for this fragment
         View view = inflater.inflate(R.layout.activity_main, container, false);
-
         mDbHelper2 = new DBHelper2(getActivity());
 
-        Cursor df = mDbHelper2.getAllUsersByMethod();
-
+        Cursor Cursor = mDbHelper2.getAllUsersByMethod();
         Intent intent = new Intent();
 
         int select = intent.getIntExtra("title",index);
+        Cursor.moveToPosition(select);
 
-        df.moveToPosition(select);
 
 
 //
@@ -58,6 +54,8 @@ public class MenuDetailFragment extends android.support.v4.app.Fragment {
 
 
         return view;
+
+
     }
 
 }

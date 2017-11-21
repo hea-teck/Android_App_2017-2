@@ -25,21 +25,11 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
 
     final static String TAG="GBHouse";
 
-//    EditText mName;
-//    EditText mAddress;
-//    EditText mPhone;
-//    ImageButton mPicture;
-
     private DBHelper1 mDbHelper1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_registration);
-
-//        mName = (EditText) findViewById(R.id.edit_name);
-//        mAddress = (EditText) findViewById(R.id.edit_address);
-//        mPhone = (EditText) findViewById(R.id.edit_phone);
-//        mPicture = (ImageButton) findViewById(R.id.imageButton3);
 
         mDbHelper1 = new DBHelper1(this);
 
@@ -56,13 +46,13 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RestaurantDetailActivity.class);
-                startActivity(intent);//버튼 클릭시 다음 엑티비티로 넘어가면서 DB에서 자료 읽어와야됨
-                insertRecord2(); //DB에 자료 저장완료
+                startActivity(intent);
+                insertRecord2();
             }
         });
     }
 
-    private void insertRecord2() {                          //레코드 추가 삽입 가능
+    private void insertRecord2() {
         EditText name = (EditText) findViewById(R.id.edit_name);
         EditText address = (EditText) findViewById(R.id.edit_address);
         EditText phone = (EditText) findViewById(R.id.edit_phone);
@@ -70,7 +60,7 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
 
         String imageuri = "sdcard/Android/data/com.example.gbhouse/files/Pictures/"+mPhotoFileName;
 
-        long nOfRows = mDbHelper1.insertUserByMethod1(name.getText().toString(), address.getText().toString(), phone.getText().toString(), imageuri);   //이미지 받아오는것 확인 / 수정!!!
+        long nOfRows = mDbHelper1.insertUserByMethod1(name.getText().toString(), address.getText().toString(), phone.getText().toString(), imageuri);
         if (nOfRows > 0)
             Toast.makeText(this, "맛집이 등록되었습니다.", Toast.LENGTH_SHORT).show();
         else

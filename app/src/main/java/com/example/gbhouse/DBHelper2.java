@@ -29,7 +29,7 @@ public class DBHelper2 extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertUserByMethod2(String menu_name, String menu_price, String menu_explanation,String menu_imageuri) {     //picture 스트링 말고
+    public long insertUserByMethod2(String menu_name, String menu_price, String menu_explanation,String menu_imageuri) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
