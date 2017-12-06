@@ -32,8 +32,8 @@ public class UserContract2 {
                _ID + " INTEGER PRIMARY KEY" + COMMA_SEP +
                 KEY_MENU_NAME + TEXT_TYPE + COMMA_SEP +
                 KEY_MENU_PRICE + TEXT_TYPE + COMMA_SEP +
-                KEY_MENU_IMAGEURI + TEXT_TYPE +
-                KEY_MENU_EXPLANATION + TEXT_TYPE + COMMA_SEP +
+                KEY_MENU_IMAGEURI + TEXT_TYPE + COMMA_SEP +
+                KEY_MENU_EXPLANATION + TEXT_TYPE +
                 " )";
 
         public static final String DELETE_TABLE2 = "DROP TABLE IF EXISTS " + TABLE_NAME2;

@@ -105,7 +105,7 @@ public class menuselectActivity extends AppCompatActivity {
         EditText menu_price = (EditText) findViewById(R.id.edit_menu_price);
         EditText menu_explanation = (EditText) findViewById(R.id.edit_menu_explanation);
 
-        String menu_imageuri = "file://sdcard/Android/data/com.example.gbhouse/files/Pictures/"+mPhotoFileName;
+        String menu_imageuri = "/storage/emulated/0/Android/data/com.example.gbhouse/files/Pictures/"+mPhotoFileName;
 
         long nOfRows = mDbHelper2.insertUserByMethod2(menu_name.getText().toString(), menu_price.getText().toString(), menu_imageuri , menu_explanation.getText().toString());
         if (nOfRows > 0)
