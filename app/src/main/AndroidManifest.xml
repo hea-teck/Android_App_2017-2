@@ -12,38 +12,42 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RestaurantRegistrationActivity">
-
+        <activity android:name=".AnimationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.DIAL" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="tel" />
             </intent-filter>
-
         </activity>
-
-        <activity android:name=".MenuDetailActivity"
-            android:label="GB HOUSE"/>
-
-        <activity android:name=".RestaurantDetailActivity"
-            android:label="GB HOUSE"/>
-
-        <activity android:name=".menuselectActivity"
-            android:label="GB HOUSE"/>
+        <activity
+            android:name=".RestaurantRegistrationActivity"
+            android:label="GB HOUSE" />
+        <activity
+            android:name=".MenuDetailActivity"
+            android:label="GB HOUSE" />
+        <activity
+            android:name=".RestaurantDetailActivity"
+            android:label="GB HOUSE" />
+        <activity
+            android:name=".menuselectActivity"
+            android:label="GB HOUSE" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.gbhouse"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_path" />
         </provider>
+
 
     </application>
 
