@@ -78,7 +78,7 @@ public class AnimationActivity extends AppCompatActivity {
         public void onAnimationEnd(Animation animation) {
             Log.i(TAG, "onAnimationEnd");
             finish();
-            startActivity(new Intent(getApplicationContext(), RestaurantRegistrationActivity.class));
+            startActivity(new Intent(getApplicationContext(), RestaurantMap.class));
         }
 
         @Override
