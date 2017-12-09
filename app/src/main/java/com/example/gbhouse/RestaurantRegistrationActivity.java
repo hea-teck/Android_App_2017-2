@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -31,12 +32,18 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_registration);
 
+        Intent intent = new Intent(this.getIntent());    //마커위치 주소 인텐트 이용하여 받기
+        String s=intent.getStringExtra("aaa");
+        TextView textView=(TextView)findViewById(R.id.edit_address);
+        textView.setText(s);
+
         mDbHelper1 = new DBHelper1(this);
 
         ImageButton btn = (ImageButton) findViewById(R.id.imageButton3);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 dispatchTakePictureIntent();
             }
         });

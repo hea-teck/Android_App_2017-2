@@ -1,12 +1,14 @@
 package com.example.gbhouse;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -33,7 +36,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallback {
+public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     final int REQUEST_PERMISSIONS_FOR_LAST_KNOWN_LOCATION = 0;
     private FusedLocationProviderClient mFusedLocationClient;
@@ -123,9 +126,8 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
             case REQUEST_PERMISSIONS_FOR_LAST_KNOWN_LOCATION: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // 권한 획득 후 수행할 일: 예, getLastLocation();
-                } else {
                     getLastLocation();
+                } else {
                     Toast.makeText(this, "Permission required", Toast.LENGTH_SHORT);
                 }
             }
@@ -141,6 +143,10 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
                 // Got last known location. In some rare situations this can be null.
                 if (location != null) {
                     mCurrentLocation = location;
+//                    Toast.makeText(getApplicationContext(),
+//                            "위도"+mCurrentLocation.getLatitude(),
+//                            Toast.LENGTH_SHORT)
+//                            .show();
                     //updateUI();
                     LatLng newLocation = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
                     if (mGoogleMap != null)
@@ -173,13 +179,41 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
                         new MarkerOptions().
                                 position(location).
                                 title(address.getText().toString()));
-//                mGoogleMap.setOnMarkerClickListener(this);
+                mGoogleMap.setOnMarkerClickListener(this);  //http://mailmail.tistory.com/21 마커 클릭 이벤트 처리 참고
             }
         } catch (IOException e) {
             Log.e(getClass().toString(), "Failed in using Geocoder.", e);
             return;
         }
     }
+
+    public boolean onMarkerClick(Marker marker){  //http://webnautes.tistory.com/1094 다이얼로그 추가하는 법
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("맛집 등록");
+        builder.setMessage("새로운 맛집을 등록하시겠습니까?");
+        builder.setPositiveButton("예",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        EditText editText = (EditText) findViewById(R.id.edit_test);  //인텐트 이용하여 엑티비티 넘어가고 마커위치 주소 넘긴다.
+                        Intent intent=new Intent(RestaurantMap.this,RestaurantRegistrationActivity.class);
+                        intent.putExtra("aaa", String.valueOf(editText.getText()));
+                        startActivity(intent);
+
+                        finish();
+                    }
+                });
+        builder.setNegativeButton("아니오",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"아니오를 선택했습니다.",Toast.LENGTH_LONG).show();
+                    }
+                });
+        builder.show();
+
+    return true;
+    }
+
 }
 
 
