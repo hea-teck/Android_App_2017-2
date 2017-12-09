@@ -55,15 +55,12 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
                 return true;
 
             case R.id.action_subactivity1:
-
                 return true;
 
             case R.id.action_subactivity2:
-
                 return true;
 
             case R.id.action_subactivity3:
-
                 return true;
 
             default:
@@ -89,14 +86,12 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
             getLastLocation();
         }
         Button btn=(Button)findViewById(R.id.button);
-        final EditText txt=(EditText)findViewById(R.id.edit_test) ;
+        final EditText editText=(EditText)findViewById(R.id.edit_test) ;
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View view) {
-
             getAddress();
-
             }
 
         });
@@ -146,10 +141,6 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
                 // Got last known location. In some rare situations this can be null.
                 if (location != null) {
                     mCurrentLocation = location;
-                    Toast.makeText(getApplicationContext(),
-                            "위도"+mCurrentLocation.getLatitude(),
-                            Toast.LENGTH_SHORT)
-                            .show();
                     //updateUI();
                     LatLng newLocation = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
                     if (mGoogleMap != null)
@@ -169,7 +160,6 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
     }
 
     private void getAddress() {
-//        addressTextView = (TextView) findViewById(R.id.result);
         EditText address = (EditText) findViewById(R.id.edit_test);
         try {
             Geocoder geocoder = new Geocoder(this, Locale.KOREA);
@@ -190,6 +180,6 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
             return;
         }
     }
-    }
+}
 
 
