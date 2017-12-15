@@ -62,6 +62,8 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
 
                 getLastLocation(); // 현재위치를 가져온다. 추가적으로 디비와 연동하여 등록된 맛집이 존재하면 보이게 되고 없으면 보이지 않게 설정
 
+                mGoogleMap.clear();
+
                 Cursor cursor1 = mDbHelper1.getAllUsersBySQL();
 
                 while (cursor1.moveToNext()) {
@@ -93,12 +95,114 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
                 return true;
 
             case R.id.action_subactivity1:
+
+                mGoogleMap.clear();
+
+                Cursor cursor2 = mDbHelper1.getAllUsersBySQL();
+
+                item.setChecked(true);
+
+                while (cursor2.moveToNext()) {
+
+                        try {
+                            Geocoder geocoder = new Geocoder(this, Locale.KOREA);
+                            List<Address> addresses = geocoder.getFromLocationName(cursor2.getString(2), 1);
+                            if (addresses.size() > 0) {
+                                Address bestResult = (Address) addresses.get(0);
+                                LatLng location = new LatLng(bestResult.getLatitude(), bestResult.getLongitude());
+                                Location Location = new Location("Location");
+                                Location.setLatitude(bestResult.getLatitude());
+                                Location.setLongitude(bestResult.getLongitude());
+                                double a = Location.distanceTo(mCurrentLocation);
+                                if (a < 1000) {
+                                    mGoogleMap.addMarker(
+                                            new MarkerOptions().
+                                                    position(location).
+                                                    title(cursor2.getString(2)).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.qaz))));
+                                    mGoogleMap.setOnMarkerClickListener(this);
+                                }
+                            }
+                        } catch (IOException e) {
+                            Log.e(getClass().toString(), "Failed in using Geocoder.", e);
+
+                        }
+                    }
+
+                cursor2.close();
                 return true;
 
             case R.id.action_subactivity2:
+
+                mGoogleMap.clear();
+
+                Cursor cursor3 = mDbHelper1.getAllUsersBySQL();
+
+                item.setChecked(true);
+
+                while (cursor3.moveToNext()) {
+
+                        try {
+                            Geocoder geocoder = new Geocoder(this, Locale.KOREA);
+                            List<Address> addresses = geocoder.getFromLocationName(cursor3.getString(2), 1);
+                            if (addresses.size() > 0) {
+                                Address bestResult = (Address) addresses.get(0);
+                                LatLng location = new LatLng(bestResult.getLatitude(), bestResult.getLongitude());
+                                Location Location = new Location("Location");
+                                Location.setLatitude(bestResult.getLatitude());
+                                Location.setLongitude(bestResult.getLongitude());
+                                double a = Location.distanceTo(mCurrentLocation);
+                                if (a < 2000) {
+                                    mGoogleMap.addMarker(
+                                            new MarkerOptions().
+                                                    position(location).
+                                                    title(cursor3.getString(2)).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.qaz))));
+                                    mGoogleMap.setOnMarkerClickListener(this);
+                                }
+                            }
+                        } catch (IOException e) {
+                            Log.e(getClass().toString(), "Failed in using Geocoder.", e);
+
+                        }
+                }
+                cursor3.close();
+
                 return true;
 
             case R.id.action_subactivity3:
+
+                mGoogleMap.clear();
+
+                Cursor cursor4 = mDbHelper1.getAllUsersBySQL();
+
+                item.setChecked(true);
+
+                while (cursor4.moveToNext()) {
+
+                        try {
+                            Geocoder geocoder = new Geocoder(this, Locale.KOREA);
+                            List<Address> addresses = geocoder.getFromLocationName(cursor4.getString(2), 1);
+                            if (addresses.size() > 0) {
+                                Address bestResult = (Address) addresses.get(0);
+                                LatLng location = new LatLng(bestResult.getLatitude(), bestResult.getLongitude());
+                                Location Location = new Location("Location");
+                                Location.setLatitude(bestResult.getLatitude());
+                                Location.setLongitude(bestResult.getLongitude());
+                                double a = Location.distanceTo(mCurrentLocation);
+                                if (a < 3000) {
+                                    mGoogleMap.addMarker(
+                                            new MarkerOptions().
+                                                    position(location).
+                                                    title(cursor4.getString(2)).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.qaz))));
+                                    mGoogleMap.setOnMarkerClickListener(this);
+                                }
+                            }
+                        } catch (IOException e) {
+                            Log.e(getClass().toString(), "Failed in using Geocoder.", e);
+
+                        }
+                }
+                cursor4.close();
+
                 return true;
 
             default:
