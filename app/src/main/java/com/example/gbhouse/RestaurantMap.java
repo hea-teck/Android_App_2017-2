@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -26,6 +28,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -43,6 +46,8 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
     Location mCurrentLocation;
     GoogleMap mGoogleMap;
 
+    DBHelper1 mDbHelper1;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -54,7 +59,37 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.quick_action1:
-                getLastLocation();
+
+                getLastLocation(); // 현재위치를 가져온다. 추가적으로 디비와 연동하여 등록된 맛집이 존재하면 보이게 되고 없으면 보이지 않게 설정
+
+                Cursor cursor1 = mDbHelper1.getAllUsersBySQL();
+
+                while (cursor1.moveToNext()) {
+
+                    //getString(1) -> 업소이름 /  getString(2) -> 주소
+
+                        try {
+                            Geocoder geocoder = new Geocoder(this, Locale.KOREA);
+                            List<Address> addresses = geocoder.getFromLocationName(cursor1.getString(2), 1);
+                            if (addresses.size() > 0) {
+                                Address bestResult = (Address) addresses.get(0);
+
+                                LatLng location = new LatLng(bestResult.getLatitude(), bestResult.getLongitude());
+
+                                mGoogleMap.addMarker(
+                                        new MarkerOptions().
+                                                position(location).
+                                                title(cursor1.getString(2)).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.qaz))));
+                               //맛집을 등록하고 다시 지도로 돌아가서 현재위치 버튼을 누르면 예전에 입력했던 데이터베이스에 저장이 되있는 getString(2) -> 주소가 적용되어 마크 모양이 설정해준것으로 바뀌게 된다.
+                                mGoogleMap.setOnMarkerClickListener(this);
+                            }
+                        } catch (IOException e) {
+                            Log.e(getClass().toString(), "Failed in using Geocoder.", e);
+
+                        }
+                }
+
+                cursor1.close();
                 return true;
 
             case R.id.action_subactivity1:
@@ -79,6 +114,8 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        mDbHelper1 = new DBHelper1(this);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -88,19 +125,19 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
         } else {
             getLastLocation();
         }
-        Button btn=(Button)findViewById(R.id.button);
-        final EditText editText=(EditText)findViewById(R.id.edit_test) ;
+        Button btn = (Button) findViewById(R.id.button);
+        final EditText editText = (EditText) findViewById(R.id.edit_test);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View view) {
-            getAddress();
+                getAddress();
             }
 
         });
     }
 
-        private boolean checkLocationPermissions() {
+    private boolean checkLocationPermissions() {
         int permissionState = ActivityCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION);
         return permissionState == PackageManager.PERMISSION_GRANTED;
@@ -143,14 +180,10 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
                 // Got last known location. In some rare situations this can be null.
                 if (location != null) {
                     mCurrentLocation = location;
-//                    Toast.makeText(getApplicationContext(),
-//                            "위도"+mCurrentLocation.getLatitude(),
-//                            Toast.LENGTH_SHORT)
-//                            .show();
-                    //updateUI();
+
                     LatLng newLocation = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
                     if (mGoogleMap != null)
-                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newLocation,15));
+                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newLocation, 15));
                 } else
                     Toast.makeText(getApplicationContext(),
                             "No Location Detected",
@@ -170,16 +203,19 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
         try {
             Geocoder geocoder = new Geocoder(this, Locale.KOREA);
             List<Address> addresses = geocoder.getFromLocationName(address.getText().toString(), 1);
-            if (addresses.size() > 0) {
-                Address bestResult = (Address) addresses.get(0);
 
+            if (addresses.size() > 0) {
+
+                Address bestResult = (Address) addresses.get(0);
                 LatLng location = new LatLng(bestResult.getLatitude(), bestResult.getLongitude());
+
                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+
                 mGoogleMap.addMarker(
                         new MarkerOptions().
                                 position(location).
                                 title(address.getText().toString()));
-                mGoogleMap.setOnMarkerClickListener(this);  //http://mailmail.tistory.com/21 마커 클릭 이벤트 처리 참고
+                mGoogleMap.setOnMarkerClickListener(this);
             }
         } catch (IOException e) {
             Log.e(getClass().toString(), "Failed in using Geocoder.", e);
@@ -187,8 +223,9 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
         }
     }
 
-    public boolean onMarkerClick(Marker marker){  //http://webnautes.tistory.com/1094 다이얼로그 추가하는 법
+    public boolean onMarkerClick(Marker marker) {                                       //http://webnautes.tistory.com/1094 다이얼로그 추가하는 법
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         builder.setTitle("맛집 등록");
         builder.setMessage("새로운 맛집을 등록하시겠습니까?");
         builder.setPositiveButton("예",
@@ -196,7 +233,7 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
                     public void onClick(DialogInterface dialog, int which) {
 
                         EditText editText = (EditText) findViewById(R.id.edit_test);  //인텐트 이용하여 엑티비티 넘어가고 마커위치 주소 넘긴다.
-                        Intent intent=new Intent(RestaurantMap.this,RestaurantRegistrationActivity.class);
+                        Intent intent = new Intent(RestaurantMap.this, RestaurantRegistrationActivity.class);
                         intent.putExtra("aaa", String.valueOf(editText.getText()));
                         startActivity(intent);
 
@@ -206,14 +243,11 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
         builder.setNegativeButton("아니오",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),"아니오를 선택했습니다.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "아니오를 선택했습니다.", Toast.LENGTH_LONG).show();
                     }
                 });
         builder.show();
 
-    return true;
+        return true;
     }
-
 }
-
-
