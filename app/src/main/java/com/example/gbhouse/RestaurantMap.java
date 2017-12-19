@@ -303,10 +303,23 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
     }
 
     private void getAddress() {
+
+        Cursor cursor5 = mDbHelper1.getAllUsersBySQL();
+
         EditText address = (EditText) findViewById(R.id.edit_test);
+
         try {
             Geocoder geocoder = new Geocoder(this, Locale.KOREA);
             List<Address> addresses = geocoder.getFromLocationName(address.getText().toString(), 1);
+
+            while (cursor5.moveToNext()) {
+
+                if (address.getText().toString().equals(cursor5.getString(1))) {
+                    // 또 다른 커서를 이용하여 데이터베이스에 저장되어있는 업소이름과 검색결과과 동일하다면
+                    addresses = geocoder.getFromLocationName(cursor5.getString(2), 1);
+                    // geocoder 를 이용해 이름으로 주소를 가져와서 보이게 설정 (주소는 getString(2))로 다시 입력받는다.
+                }
+            }
 
             if (addresses.size() > 0) {
 
@@ -321,6 +334,7 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
                                 title(address.getText().toString()));
                 mGoogleMap.setOnMarkerClickListener(this);
             }
+
         } catch (IOException e) {
             Log.e(getClass().toString(), "Failed in using Geocoder.", e);
             return;
