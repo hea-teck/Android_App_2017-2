@@ -48,6 +48,8 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
 
     DBHelper1 mDbHelper1;
 
+    Cursor cursor6;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -320,9 +322,40 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
                     // geocoder 를 이용해 이름으로 주소를 가져와서 보이게 설정 (주소는 getString(2))로 다시 입력받는다.
                 }
             }
+            cursor5.close();
 
             if (addresses.size() > 0) {
 
+                cursor6 = mDbHelper1.getAllUsersBySQL();
+                //추가적으로 또 커서를 생성하여 데이터베이스에 저장한 것 중 업소이름으로 검색을 하였을 때
+                // 주변의 예전에 맛집등록이 되어있던 것 까지 등록된 마커를 포함하여 동시에 보이도록 설정하였습니다.
+                while (cursor6.moveToNext()) {
+
+                    try {
+                            Geocoder geocoder2 = new Geocoder(this, Locale.KOREA);
+                            List<Address> addresses2 = geocoder2.getFromLocationName(cursor6.getString(2), 1);
+                            if (addresses2.size() > 0) {
+
+                                Address bestResult2 = (Address) addresses2.get(0);
+
+                                LatLng location = new LatLng(bestResult2.getLatitude(), bestResult2.getLongitude());
+
+                                mGoogleMap.addMarker(
+                                        new MarkerOptions().
+                                                position(location).
+                                                title(cursor6.getString(2)).icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.qaz))));
+
+                                mGoogleMap.setOnMarkerClickListener(this);
+                            }
+
+                    } catch (IOException e) {
+                        Log.e(getClass().toString(),"Failed in using Geocoder.", e);
+
+                    }
+                }
+                cursor6.close();
+
+                //검색하였을 때 주소를 가져와 기본마크 표기 할 수 있도록 함
                 Address bestResult = (Address) addresses.get(0);
                 LatLng location = new LatLng(bestResult.getLatitude(), bestResult.getLongitude());
 
