@@ -113,9 +113,11 @@ public class RestaurantMap extends AppCompatActivity implements OnMapReadyCallba
                                 Address bestResult = (Address) addresses.get(0);
                                 LatLng location = new LatLng(bestResult.getLatitude(), bestResult.getLongitude());
                                 Location Location = new Location("Location");
+                                //아래 주소 참고
+                                //https://stackoverflow.com/questions/35616139/how-to-get-distance-between-current-location-and-the-next-current-location
                                 Location.setLatitude(bestResult.getLatitude());
                                 Location.setLongitude(bestResult.getLongitude());
-                                double a = Location.distanceTo(mCurrentLocation);
+                                double a = Location.distanceTo(mCurrentLocation); //현재위치를 기준으로 거리에 따른 마커 표시영역 설정
                                 if (a < 1000) {
                                     mGoogleMap.addMarker(
                                             new MarkerOptions().
