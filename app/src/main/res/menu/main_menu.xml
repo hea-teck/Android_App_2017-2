@@ -8,4 +8,10 @@
         android:title="플러스"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/map"
+        android:icon="@drawable/ic_add_location_black_24dp"
+        android:title="지도"
+        app:showAsAction="ifRoom" />
+
 </menu>

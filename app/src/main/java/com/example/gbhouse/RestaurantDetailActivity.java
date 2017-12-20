@@ -195,9 +195,15 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Resta
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+
+            case R.id.map:
+                startActivity(new Intent(this, RestaurantMap.class));
+                return true;
+
             case R.id.plus:
                 startActivity(new Intent(this, menuselectActivity.class));
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
